@@ -18,6 +18,8 @@ namespace WebDBApp1
             builder.Services.AddScoped<IClientDAO, ClientDAOImpl>();
             builder.Services.AddScoped<IClientService, ClientServiceImpl>();
             builder.Services.AddAutoMapper(typeof(MapperConfig));
+            Console.WriteLine($"appsettings.json exists: {File.Exists("appsettings.json")}");
+
             builder.Host.UseSerilog((context, config) =>
             {   
                 config.ReadFrom.Configuration(context.Configuration);

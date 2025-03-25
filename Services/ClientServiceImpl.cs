@@ -35,8 +35,9 @@ namespace WebDBApp1.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError("Error inserting client. {ErrorMessage}",
-                    clientInsertDTO.Firstname, clientInsertDTO.Lastname, ex.Message);
+                _logger.LogError("Error inserting client. {ErrorMessage}", ex.Message);
+
+
                 throw;
             }
         }

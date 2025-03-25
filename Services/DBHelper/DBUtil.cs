@@ -8,7 +8,7 @@ namespace WebDBApp1.Services.DBHelper
         {
             SqlConnection connection;
             ConfigurationBuilder builder = new ConfigurationBuilder();
-            builder.AddJsonFile("appsetting.json");
+            builder.AddJsonFile("appsettings.json");
             var configuration = builder.Build();
             string? url = configuration.GetConnectionString("DefaultConnection");
 

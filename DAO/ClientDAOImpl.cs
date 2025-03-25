@@ -8,7 +8,7 @@ namespace WebDBApp1.DAO
     {
         public void delete(int id)
         {
-            string sql = "DELETE FROM Client WHERE Id = @Id";
+            string sql = "DELETE FROM Clients WHERE Id = @Id";
 
             using SqlConnection connection = DBUtil.GetConnection();
             connection.Open();
@@ -22,7 +22,7 @@ namespace WebDBApp1.DAO
 
         public List<Client> GetAll()
         {
-            string sql = "SELECT * FROM Client";  
+            string sql = "SELECT * FROM Clients";  
             List<Client> clients = [];
 
             using SqlConnection connection = DBUtil.GetConnection();
@@ -46,7 +46,7 @@ namespace WebDBApp1.DAO
         public Client? GetById(int id)
         {
             Client? clientToReturn = null;
-            string sql = "SELECT * FROM Client Where Id = @id";
+            string sql = "SELECT * FROM Clients Where Id = @id";
 
             using SqlConnection connection = DBUtil.GetConnection();
             connection.Open();
@@ -71,7 +71,7 @@ namespace WebDBApp1.DAO
         {
             Client? clientToReturn = null;
             int insertedId = 0;
-            string sql1 = "INSERT INTO Client (Firstname, Lastname) VALUES (@Firstname, @Lastname);" +
+            string sql1 = "INSERT INTO Clients (Firstname, Lastname) VALUES (@Firstname, @Lastname);" +
                 "SELECT SCOPE_IDENTITY();";
 
             using SqlConnection connection = DBUtil.GetConnection();
@@ -90,7 +90,7 @@ namespace WebDBApp1.DAO
                 }
             }
 
-            string sql2 = "SELECT * FROM Client WHERE Id = @ClientId";
+            string sql2 = "SELECT * FROM Clients WHERE Id = @ClientId";
             using SqlCommand command2 = new(sql2, connection);
             command2.Parameters.AddWithValue("@ClientId", insertedId);
 
@@ -109,7 +109,7 @@ namespace WebDBApp1.DAO
 
         public void update(Client client)
         {
-            string sql = "UPDATE Client SET Firstname = @Firstname, Lastname = @Lastname WHERE Id = @Id";
+            string sql = "UPDATE Clients SET Firstname = @Firstname, Lastname = @Lastname WHERE Id = @Id";
 
             using SqlConnection connection = DBUtil.GetConnection();
             connection.Open();

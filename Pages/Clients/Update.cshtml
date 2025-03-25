@@ -1,6 +1,6 @@
-﻿@page "/Clients/Create"
-@model WebDBApp1.Pages.Clients.CreateModel
-@using WebDBApp1.DTO
+﻿@page "/Clients/{id}/Update"
+@model WebDBApp1.Pages.Clients.UpdateModel
+
 
 @{
 	ViewData["Title"] = "Add Client";
@@ -14,16 +14,16 @@
 		<div class="row mb-3">
 			<label for="firstname" class="col-md-1">Name</label>
 			<div class="col-md-6">
-				<Input asp-for="ClientInsertDTO.Firstname" class="form-control" />
-				<span asp-validation-for ="ClientInsertDTO.Firstname" class="text-danger"></span>
+				<Input asp-for="ClientUpdateDTO.Firstname" class="form-control" />
+				<span asp-validation-for ="ClientUpdateDTO.Firstname" class="text-danger"></span>
 			</div>
 		</div>
 
 		<div class="row mb-3">
 			<label for="lastname" class="col-md-1">Surname</label>
 			<div class="col-md-6">
-				<Input asp-for="ClientInsertDTO.Lastname" class="form-control" />
-				<span asp-validation-for="ClientInsertDTO.Lastname" class="text-danger"></span>
+				<Input asp-for="ClientUpdateDTO.Lastname" class="form-control" />
+				<span asp-validation-for="ClientUpdateDTO.Lastname" class="text-danger"></span>
 			</div>
 		</div>
 
@@ -47,7 +47,7 @@
 	</form>
 
 	<div>
-		@if (Model.ErrorArray != null && Model.ErrorArray.Count > 0)
+		@if (Model.ErrorArray.Count != 0)
 		{
 			<div class="alert alert-danger mt-3">
 				@foreach (var error in Model.ErrorArray)

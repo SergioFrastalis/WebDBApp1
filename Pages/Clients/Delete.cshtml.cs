@@ -1,48 +1,34 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using WebDBApp1.DTO;
 using WebDBApp1.Models;
 using WebDBApp1.Services;
 
 namespace WebDBApp1.Pages.Clients
 {
-    public class CreateModel : PageModel
+    public class DeleteModel : PageModel
     {
-        [BindProperty]
-        public ClientInsertDTO ClientInsertDTO { get; set; } = new();
-
         public List<Error> ErrorArray { get; set; } = [];
-
         private readonly IClientService _clientService;
 
-        public CreateModel(IClientService clientService)
+        public DeleteModel(IClientService clientService)
         {
             _clientService = clientService;
         }
 
-        public void OnGet()
+        public void OnGet(int id)
         {
-            //return Page();
-        }
-
-        public void OnPost()
-        {
-            if (!ModelState.IsValid)
-            {
-                return;
-            }
+            Console.WriteLine($"Trying to delete client with ID: {id}"); // TEMP: test if it triggers
 
             try
             {
-                ClientReadOnlyDTO? clientReadOnlyDTO = _clientService.Insert(ClientInsertDTO);
+                _clientService.Delete(id);
                 Response.Redirect("/Clients/getall");
             }
             catch (Exception ex)
             {
                 ErrorArray.Add(new Error("", ex.Message, ""));
-                return;
+
             }
         }
-
     }
 }
